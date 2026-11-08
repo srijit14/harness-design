@@ -1,0 +1,25 @@
+{
+  "_about": "Step 3 dataset audit of the 20 practice tasks (FIRST_EXPERIMENT.md, Step 3). Tasks are never edited; this file only flags them for analysis. 2026-11-06.",
+  "method": {
+    "answer_vs_gold": "For each of 80 blockers, extract the resolution's quoted strings, numbers, dates and table.column names; flag those not found in the gold SQL; review every flagged blocker by hand against the gold SQL.",
+    "findable_in_business_info": "Query each task's own business-info index (Scale's server, n_results=5) with the blocker's first 3 example questions and its description; flag a blocker if the retrieved notes contain any answer value that the gold SQL uses (at least 2 characters); read every flagged note.",
+    "findable_in_schema": "Same values searched in the task's schema CSVs. Only short tokens matched (single letters, codes like 'POS' that also appear as data values), so it was judged inconclusive and not used.",
+    "solved_with_full_answers": "Compare Gemini 3.1 Pro and Qwen3-235B-A22B-2507 full-info results (runs/step4c_fullinfo, 1 try each)."
+  },
+  "results": {
+    "answer_vs_gold_mismatches": 0,
+    "answer_vs_gold_flagged_and_cleared": 21,
+    "findable_in_business_info": 0,
+    "business_info_incidental_mentions": 13,
+    "note": "The 13 mentions are decoy notes that use related terms (e.g. 'early 2010s' could mean 2010-2012 or 2010-2014) without giving the resolution."
+  },
+  "suspect_tasks": [
+    {
+      "task_id": "public_sql_68",
+      "issue": "output_format_unspecified",
+      "detail": "The question asks to 'indicate whether they are competing in the current season' without a format. The gold uses 'Yes'/'No'. Both strong models returned the same 3 constructors with 1/0 and were scored wrong (the scorer compares values exactly). Also, the gold omits the resolution's status filter ('Finished' OR collision statuses), which changes nothing because the collision condition implies it.",
+      "evidence": "runs/step4c_fullinfo/fullinfo_20x1/*/full_info/metrics.json",
+      "handling": "Keep in all conditions; report results with and without it."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+# Model key = the exact --model string passed to `hil sql`.
+sql:
+  baseline:
+    vertex_ai/gemini-3.1-pro-preview: sql/gemini31pro_default.yaml
+    openrouter/qwen/qwen3-32b: sql/qwen3_32b_default.yaml
+    openrouter/qwen/qwen3-235b-a22b-2507: sql/qwen3_235b_2507_default.yaml
+    openrouter/qwen/qwen3-30b-a3b-instruct-2507: sql/qwen3_30b_a3b_2507_default.yaml
+  full_info:
+    vertex_ai/gemini-3.1-pro-preview: sql/gemini31pro_default.yaml
+    openrouter/qwen/qwen3-32b: sql/qwen3_32b_default.yaml
+    openrouter/qwen/qwen3-235b-a22b-2507: sql/qwen3_235b_2507_default.yaml
+    openrouter/qwen/qwen3-30b-a3b-instruct-2507: sql/qwen3_30b_a3b_2507_default.yaml
+  ask_human:
+    vertex_ai/gemini-3.1-pro-preview: sql/gemini31pro_ask.yaml
+    openrouter/qwen/qwen3-32b: sql/qwen3_32b_ask.yaml
+    openrouter/qwen/qwen3-235b-a22b-2507: sql/qwen3_235b_2507_ask.yaml

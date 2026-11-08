@@ -1,0 +1,10 @@
+# v2 = v1 + the checkpoint with the "value with no source" check (hilx/checks/unsourced_values.py).
+# count_data: false = a value seen only in query results counts as unsourced. Chosen from the offline
+# replay on runs/step4f (24/26 made-up values flagged, 0.5 flags per run; with count_data true: 9/26).
+name: v2_unsourced
+agent_config: configs/sql/qwen3_235b_2507_ask.yaml
+checks:
+  - name: unsourced_values
+    options: {count_data: false}
+on_flag: ask               # for now every flag must be asked about; later: which flags to assume instead
+max_checkpoint_rounds: 2   # after 2 held submissions, the next one is accepted as is

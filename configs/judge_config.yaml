@@ -1,0 +1,7 @@
+# Simulated human: Llama-3.3-70B via OpenRouter (the paper used casperhansen/llama-3.3-70b-instruct-awq, self-hosted).
+# self_hosted = any OpenAI-compatible endpoint; provider_direct looks broken in the vendor code (PLAN_AGENT §2.3).
+model: meta-llama/llama-3.3-70b-instruct
+hosting:
+  type: self_hosted
+  self_hosted_base_url: https://openrouter.ai/api/v1
+  self_hosted_api_key_env: OPENROUTER_API_KEY

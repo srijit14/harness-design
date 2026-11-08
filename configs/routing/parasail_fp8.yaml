@@ -1,0 +1,12 @@
+# OpenRouter provider routing for the agent model (not the judge), sent as `provider` with every call.
+# Why Parasail: all four providers serve qwen3-235b-a22b-2507 at fp8; Parasail has prompt-cache pricing
+# ($0.05/M cached vs $0.14/M input), so long runs that reuse their context are cheapest and steadiest;
+# it served ~70% of calls in v1/v2 and had 100% recent uptime (OpenRouter endpoints API, 2026-11-07).
+# DeepInfra is cheaper per token but has no cache price; GMICloud is cheapest but had no uptime data.
+# No fallbacks: if Parasail is down, calls fail rather than silently moving to another provider.
+provider:
+  order: [parasail]
+  allow_fallbacks: false
+  quantizations: [fp8]
+  require_parameters: true
+timeout_s: 300   # per model call; a call that never returns otherwise blocks the run (v1b task 68)

@@ -1,0 +1,7 @@
+# v1b = v1 + one sentence in the system prompt stating a rule Scale's judge applies but Scale's prompt
+# doesn't state: no guesses in questions. Control for v2b: measures what telling the rule alone does.
+name: v1b_open_questions
+agent_config: configs/sql/qwen3_235b_2507_ask.yaml
+system_prompt_addition: >-
+  When you ask the human analyst, ask an open question about what was meant, for example "What does 'recent customers' mean?". Do not include your own value or guess in the question.
+checks: []

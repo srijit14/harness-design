@@ -1,0 +1,14 @@
+# v3 = v2 + the "similar alternatives" check (hilx/checks/similar_alternatives.py): the query uses one of
+# several look-alike tables or columns (narrow search / picked). Merges the planned v3 and v4: the flag
+# says whether the agent never looked at the others or saw them and chose alone.
+# Thresholds from the offline replay on runs/step4f (scripts/replay_alternatives.py): confusable_sim 0.7
+# catches 17/23 missed schema details at 2.3 flags per run (~47% name a hidden detail); 0.8 drops to 12/23.
+name: v3_alternatives
+agent_config: configs/sql/qwen3_235b_2507_ask.yaml
+checks:
+  - name: unsourced_values
+    options: {count_data: false}
+  - name: similar_alternatives
+    options: {same_sim: 0.6, cross_sim: 0.8, cross_word_sim: 0.4, table_sim: 0.8, confusable_sim: 0.7}
+on_flag: ask
+max_checkpoint_rounds: 2

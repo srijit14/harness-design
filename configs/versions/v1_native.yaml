@@ -1,0 +1,6 @@
+# v1: our harness with no checks. Must match Scale's harness (v0, runs/step4f_qwen235b_fixed: native
+# asking pass@1 38.3%, 3.7 questions per run, Ask-F1 71.7%) before any check is added.
+# Never edit a version file once it has run; a change is a new version file.
+name: v1_native
+agent_config: configs/sql/qwen3_235b_2507_ask.yaml  # Scale's ask prompt and tools, unchanged
+checks: []

@@ -1,0 +1,11 @@
+# v2b = v1b + v2's check. The same rule sentence is in the system prompt (as in v1b) and the hold message
+# repeats it (on_flag: ask_open). So v2b vs v1b = what the check and hold add when both know the rule.
+name: v2b_unsourced_open
+agent_config: configs/sql/qwen3_235b_2507_ask.yaml
+system_prompt_addition: >-
+  When you ask the human analyst, ask an open question about what was meant, for example "What does 'recent customers' mean?". Do not include your own value or guess in the question.
+checks:
+  - name: unsourced_values
+    options: {count_data: false}
+on_flag: ask_open
+max_checkpoint_rounds: 2

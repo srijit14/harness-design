@@ -1,0 +1,9 @@
+vendor/
+data/
+runs/
+.env
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+user-model-openapi.yaml

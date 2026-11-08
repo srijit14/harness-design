@@ -1,0 +1,16 @@
+# v3b = v3 with three bugs fixed (found by hand-auditing v3's replay flags, 2026-11-07):
+#   include_used: look-alikes the query also uses stay listed (v3 dropped them, so a query using all five
+#     loan-amount provider columns was told about `order.amount` instead);
+#   min_description_words 1: a one-word description ("region") is informative (v3 treated it as blank,
+#     so district.A3 looked confusable with every column);
+#   cross_word_sim 0.5: tighter matching across tables (v3 matched schools.School to frpm.School Type).
+name: v3b_alternatives_fixed
+agent_config: configs/sql/qwen3_235b_2507_ask.yaml
+checks:
+  - name: unsourced_values
+    options: {count_data: false}
+  - name: similar_alternatives
+    options: {same_sim: 0.6, cross_sim: 0.8, cross_word_sim: 0.5, table_sim: 0.8, confusable_sim: 0.7,
+              include_used: true, min_description_words: 1}
+on_flag: ask
+max_checkpoint_rounds: 2

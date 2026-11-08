@@ -1,0 +1,10 @@
+{
+  "plumbing_tasks": [
+    "public_sql_0",
+    "public_sql_20",
+    "public_sql_41",
+    "public_sql_45",
+    "public_sql_47"
+  ],
+  "rule": "first practice task (by ID) on each of the 5 databases"
+}

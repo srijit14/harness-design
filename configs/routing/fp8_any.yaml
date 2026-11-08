@@ -1,0 +1,10 @@
+# OpenRouter routing for the agent model: any provider serving fp8 (today all four: Parasail, DeepInfra,
+# GMICloud, Venice), OpenRouter's load balancing otherwise. Pinning one provider (parasail_fp8.yaml)
+# hit OpenRouter's shared-capacity rate limit (18 requests/min, ~970 retries in one baseline run, about
+# half speed); unpinned runs never did. Cost stays comparable without a pin: every run's tokens are
+# priced at one fixed list (`cost_list` in results; configs/model_prices.json), whatever the provider
+# billed. The provider of each call is recorded, so a provider effect can still be checked.
+provider:
+  quantizations: [fp8]
+  require_parameters: true
+timeout_s: 300   # per model call; a call that never returns otherwise blocks the run (v1b task 68)
