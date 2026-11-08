@@ -41,7 +41,7 @@ def failure_modes():
              "WEAKENED": "Weakened the request"}
     groups = [("none", "v1: no checks", V1), ("unsourced", "v2: no-source values", V2),
               ("alternatives", "v3: + look-alikes", V3)]
-    fig, ax = plt.subplots(figsize=(4.4, 1.75))
+    fig, ax = plt.subplots(figsize=(4.4, 1.45))
     h = 0.26
     modes = list(names)
     for i, m in enumerate(reversed(modes)):
