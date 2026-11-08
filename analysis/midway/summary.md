@@ -14,6 +14,7 @@
 | v3 (similar alternatives) | 53.3 | 10/13/9 | 80 | 30 | 10 | 7.2 | 3.2 | 80% | 50/54 | 91/117 | 52/69 | 199 | 54 | $1.45 | 13.4 |
 | Full info (all answers given) | 80.0 | 16/15/17 | 100 | 60 | 8 | 0.0 | 0.0 | 0% | 0/54 | 0/117 | 0/69 | 0 | 0 | — | 0.0 |
 | v1, held-out | 13.7 | 2/9/5 | 33 | 0 | 13 | 3.4 | 1.2 | 52% | 39/108 | 120/204 | 85/153 | 0 | 0 | $1.72 | 24.9 |
+| v2, held-out | 15.4 | 6/6/6 | 33 | 0 | 13 | 4.2 | 1.4 | 62% | 54/108 | 126/204 | 106/153 | 104 | 41 | $1.84 | 27.1 |
 | v3, held-out | 21.4 | 10/8/7 | 33 | 10 | 9 | 7.0 | 3.7 | 67% | 75/108 | 135/204 | 103/153 | 367 | 97 | $2.53 | 32.8 |
 | Full info, held-out (1 try) | 59.0 | 23 | 59 | 59 | 0 | 0.0 | 0.0 | 0% | 0/36 | 0/68 | 0/51 | 0 | 0 | — | 0.0 |
 
@@ -23,13 +24,16 @@
 
 | Comparison | diff | 95% CI | bootstrap P(diff ≤ 0) | permutation p (one-sided) |
 |---|---|---|---|---|
-| v2 family vs no checks | +5.3 | [-1.4, +12.6] | 0.068 | 0.050 |
-| v3 vs no checks | +15.8 | [-0.4, +32.9] | 0.028 | 0.001 |
-| v3 vs v2 family | +10.6 | [-3.9, +26.1] | 0.089 | 0.031 |
-| v2 vs v1 (mixed) | +5.0 | [-8.3, +18.3] | 0.249 | 0.286 |
-| v2 pinned vs v1 pinned | +3.3 | [-5.0, +13.3] | 0.271 | 0.358 |
-| v2b vs v1b | +8.3 | [-3.3, +21.7] | 0.088 | 0.118 |
-| held-out: v3 vs v1 | +7.7 | [-3.4, +18.8] | 0.074 | 0.049 |
+| v2 family vs no checks | +5.3 | [-1.7, +12.6] | 0.069 | 0.049 |
+| v3 vs no checks | +15.8 | [-0.0, +32.9] | 0.028 | 0.001 |
+| v3 vs v2 family | +10.6 | [-4.4, +26.1] | 0.090 | 0.032 |
+| v2 vs v1 (mixed) | +5.0 | [-8.3, +18.3] | 0.253 | 0.287 |
+| v2 pinned vs v1 pinned | +3.3 | [-5.0, +13.3] | 0.280 | 0.358 |
+| v2b vs v1b | +8.3 | [-3.3, +21.7] | 0.095 | 0.118 |
+| v3 vs v1 pinned | +18.3 | [-0.0, +36.7] | 0.030 | 0.007 |
+| held-out: v3 vs v1 | +7.7 | [-3.4, +18.8] | 0.080 | 0.051 |
+| held-out: v2 vs v1 | +1.7 | [-7.7, +11.1] | 0.377 | 0.423 |
+| held-out: v3 vs v2 | +6.0 | [-5.1, +17.1] | 0.135 | 0.108 |
 
 ## 3. After a hold (questions asked after the first held submission)
 
@@ -39,6 +43,7 @@
 | v2 (pinned) | 11 (11 aligned) | 30 | 8 | 3 | 18 | 1 | 56.9% | 6 (0) | 2 |
 | v2b (+ open-question rule) | 17 (17 aligned) | 39 | 11 | 4 | 22 | 2 | 58.6% | 10 (0) | 4 |
 | v3 (similar alternatives) | 54 (54 aligned) | 215 | 33 | 33 | 142 | 7 | 45.8% | 23 (9) | 29 |
+| v2, held-out | 41 (41 aligned) | 90 | 18 | 3 | 61 | 8 | 59.3% | 14 (2) | 7 |
 | v3, held-out | 97 (97 aligned) | 398 | 54 | 40 | 298 | 6 | 29.0% | 41 (7) | 22 |
 
 By the checks that held the submission:
@@ -49,6 +54,7 @@ By the checks that held the submission:
 - v3 (similar alternatives), similar_alternatives: new 8, repeat 22, wasted 79
 - v3 (similar alternatives), similar_alternatives+unsourced_values: cant_answer 7, new 23, repeat 8, wasted 57
 - v3 (similar alternatives), unsourced_values: new 2, repeat 3, wasted 6
+- v2, held-out, unsourced_values: cant_answer 8, new 18, repeat 3, wasted 61
 - v3, held-out, similar_alternatives: new 22, repeat 27, wasted 170
 - v3, held-out, similar_alternatives+unsourced_values: cant_answer 5, new 29, repeat 13, wasted 107
 - v3, held-out, unsourced_values: cant_answer 1, new 3, wasted 21
@@ -70,64 +76,64 @@ By the checks that held the submission:
 
 ## 5. Passes out of 3, per task
 
-| Task | v0 | v1 | v1_pinned | v1b | v2 | v2_pinned | v2b | v3 | full_info | v1_test | v3_test | full_info_test |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| public_sql_0 | 1 | 1 | 1 | 0 | 1 | 1 | 2 | 2 | 3 |  |  |  |
-| public_sql_1 |  |  |  |  |  |  |  |  |  | 1 | 2 | 1 |
-| public_sql_7 | 2 | 2 | 3 | 3 | 2 | 3 | 3 | 3 | 2 |  |  |  |
-| public_sql_9 |  |  |  |  |  |  |  |  |  | 0 | 1 | 1 |
-| public_sql_11 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_14 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_16 |  |  |  |  |  |  |  |  |  | 1 | 2 | 1 |
-| public_sql_17 | 3 | 3 | 3 | 3 | 2 | 3 | 3 | 3 | 3 |  |  |  |
-| public_sql_18 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |  |  |  |
-| public_sql_20 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 3 |  |  |  |
-| public_sql_23 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |  |  |  |
-| public_sql_25 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_26 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_27 |  |  |  |  |  |  |  |  |  | 1 | 3 | 1 |
-| public_sql_29 |  |  |  |  |  |  |  |  |  | 1 | 0 | 1 |
-| public_sql_31 |  |  |  |  |  |  |  |  |  | 0 | 0 | 1 |
-| public_sql_33 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_37 |  |  |  |  |  |  |  |  |  | 1 | 1 | 1 |
-| public_sql_38 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 |  |  |  |
-| public_sql_40 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_41 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 3 |  |  |  |
-| public_sql_43 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_44 | 2 | 2 | 1 | 2 | 3 | 2 | 3 | 3 | 3 |  |  |  |
-| public_sql_45 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 2 |  |  |  |
-| public_sql_47 | 1 | 3 | 2 | 2 | 2 | 2 | 2 | 2 | 3 |  |  |  |
-| public_sql_49 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_50 | 2 | 3 | 2 | 2 | 3 | 2 | 3 | 3 | 3 |  |  |  |
-| public_sql_52 |  |  |  |  |  |  |  |  |  | 1 | 1 | 1 |
-| public_sql_53 |  |  |  |  |  |  |  |  |  | 0 | 0 | 1 |
-| public_sql_55 |  |  |  |  |  |  |  |  |  | 0 | 0 | 1 |
-| public_sql_56 |  |  |  |  |  |  |  |  |  | 2 | 3 | 0 |
-| public_sql_58 |  |  |  |  |  |  |  |  |  | 1 | 1 | 1 |
-| public_sql_59 |  |  |  |  |  |  |  |  |  | 0 | 0 | 1 |
-| public_sql_60 |  |  |  |  |  |  |  |  |  | 0 | 1 | 0 |
-| public_sql_61 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_63 |  |  |  |  |  |  |  |  |  | 2 | 0 | 1 |
-| public_sql_64 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 |  |  |  |
-| public_sql_66 |  |  |  |  |  |  |  |  |  | 1 | 0 | 1 |
-| public_sql_67 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_68 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |  |  |  |
-| public_sql_70 |  |  |  |  |  |  |  |  |  | 0 | 0 | 1 |
-| public_sql_74 |  |  |  |  |  |  |  |  |  | 1 | 2 | 1 |
-| public_sql_75 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_76 |  |  |  |  |  |  |  |  |  | 2 | 3 | 1 |
-| public_sql_77 | 3 | 2 | 3 | 2 | 2 | 3 | 2 | 1 | 3 |  |  |  |
-| public_sql_78 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 |  |  |  |
-| public_sql_79 |  |  |  |  |  |  |  |  |  | 0 | 3 | 1 |
-| public_sql_80 | 2 | 1 | 0 | 1 | 2 | 1 | 2 | 2 | 1 |  |  |  |
-| public_sql_81 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_84 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 3 |  |  |  |
-| public_sql_85 | 1 | 0 | 0 | 1 | 1 | 0 | 1 | 1 | 2 |  |  |  |
-| public_sql_87 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_88 |  |  |  |  |  |  |  |  |  | 0 | 0 | 1 |
-| public_sql_91 |  |  |  |  |  |  |  |  |  | 1 | 0 | 1 |
-| public_sql_93 | 0 | 0 | 0 | 1 | 1 | 0 | 1 | 1 | 2 |  |  |  |
-| public_sql_95 |  |  |  |  |  |  |  |  |  | 0 | 0 | 1 |
-| public_sql_97 |  |  |  |  |  |  |  |  |  | 0 | 0 | 1 |
-| public_sql_98 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 |
-| public_sql_99 |  |  |  |  |  |  |  |  |  | 0 | 2 | 1 |
+| Task | v0 | v1 | v1_pinned | v1b | v2 | v2_pinned | v2b | v3 | full_info | v1_test | v2_test | v3_test | full_info_test |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| public_sql_0 | 1 | 1 | 1 | 0 | 1 | 1 | 2 | 2 | 3 |  |  |  |  |
+| public_sql_1 |  |  |  |  |  |  |  |  |  | 1 | 2 | 2 | 1 |
+| public_sql_7 | 2 | 2 | 3 | 3 | 2 | 3 | 3 | 3 | 2 |  |  |  |  |
+| public_sql_9 |  |  |  |  |  |  |  |  |  | 0 | 0 | 1 | 1 |
+| public_sql_11 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 0 |
+| public_sql_14 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 0 |
+| public_sql_16 |  |  |  |  |  |  |  |  |  | 1 | 2 | 2 | 1 |
+| public_sql_17 | 3 | 3 | 3 | 3 | 2 | 3 | 3 | 3 | 3 |  |  |  |  |
+| public_sql_18 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 |  |  |  |  |
+| public_sql_20 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 3 |  |  |  |  |
+| public_sql_23 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |  |  |  |  |
+| public_sql_25 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 0 |
+| public_sql_26 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 0 |
+| public_sql_27 |  |  |  |  |  |  |  |  |  | 1 | 1 | 3 | 1 |
+| public_sql_29 |  |  |  |  |  |  |  |  |  | 1 | 2 | 0 | 1 |
+| public_sql_31 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 1 |
+| public_sql_33 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 0 |
+| public_sql_37 |  |  |  |  |  |  |  |  |  | 1 | 1 | 1 | 1 |
+| public_sql_38 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 |  |  |  |  |
+| public_sql_40 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 0 |
+| public_sql_41 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 3 |  |  |  |  |
+| public_sql_43 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 0 |
+| public_sql_44 | 2 | 2 | 1 | 2 | 3 | 2 | 3 | 3 | 3 |  |  |  |  |
+| public_sql_45 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 2 |  |  |  |  |
+| public_sql_47 | 1 | 3 | 2 | 2 | 2 | 2 | 2 | 2 | 3 |  |  |  |  |
+| public_sql_49 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 0 |
+| public_sql_50 | 2 | 3 | 2 | 2 | 3 | 2 | 3 | 3 | 3 |  |  |  |  |
+| public_sql_52 |  |  |  |  |  |  |  |  |  | 1 | 0 | 1 | 1 |
+| public_sql_53 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 1 |
+| public_sql_55 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 1 |
+| public_sql_56 |  |  |  |  |  |  |  |  |  | 2 | 1 | 3 | 0 |
+| public_sql_58 |  |  |  |  |  |  |  |  |  | 1 | 0 | 1 | 1 |
+| public_sql_59 |  |  |  |  |  |  |  |  |  | 0 | 1 | 0 | 1 |
+| public_sql_60 |  |  |  |  |  |  |  |  |  | 0 | 0 | 1 | 0 |
+| public_sql_61 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 0 |
+| public_sql_63 |  |  |  |  |  |  |  |  |  | 2 | 2 | 0 | 1 |
+| public_sql_64 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 |  |  |  |  |
+| public_sql_66 |  |  |  |  |  |  |  |  |  | 1 | 0 | 0 | 1 |
+| public_sql_67 |  |  |  |  |  |  |  |  |  | 0 | 1 | 0 | 0 |
+| public_sql_68 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |  |  |  |  |
+| public_sql_70 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 1 |
+| public_sql_74 |  |  |  |  |  |  |  |  |  | 1 | 1 | 2 | 1 |
+| public_sql_75 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 0 |
+| public_sql_76 |  |  |  |  |  |  |  |  |  | 2 | 1 | 3 | 1 |
+| public_sql_77 | 3 | 2 | 3 | 2 | 2 | 3 | 2 | 1 | 3 |  |  |  |  |
+| public_sql_78 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 |  |  |  |  |
+| public_sql_79 |  |  |  |  |  |  |  |  |  | 0 | 1 | 3 | 1 |
+| public_sql_80 | 2 | 1 | 0 | 1 | 2 | 1 | 2 | 2 | 1 |  |  |  |  |
+| public_sql_81 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 0 |
+| public_sql_84 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 3 |  |  |  |  |
+| public_sql_85 | 1 | 0 | 0 | 1 | 1 | 0 | 1 | 1 | 2 |  |  |  |  |
+| public_sql_87 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 0 |
+| public_sql_88 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 1 |
+| public_sql_91 |  |  |  |  |  |  |  |  |  | 1 | 0 | 0 | 1 |
+| public_sql_93 | 0 | 0 | 0 | 1 | 1 | 0 | 1 | 1 | 2 |  |  |  |  |
+| public_sql_95 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 1 |
+| public_sql_97 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 1 |
+| public_sql_98 |  |  |  |  |  |  |  |  |  | 0 | 0 | 0 | 0 |
+| public_sql_99 |  |  |  |  |  |  |  |  |  | 0 | 2 | 2 | 1 |

@@ -43,6 +43,7 @@ DEV = [
 ]
 TEST = [
     ("v1_test", "v1, held-out", "none", "runs/v1_native/test_small_39x3"),
+    ("v2_test", "v2, held-out", "unsourced", "runs/v2_unsourced/test_small_39x3"),
     ("v3_test", "v3, held-out", "alternatives", "runs/v3_alternatives/test_small_39x3"),
     ("full_info_test", "Full info, held-out (1 try)", "ceiling", "runs/step4g_fullinfo_test/fullinfo_39x1"),
 ]
@@ -376,16 +377,22 @@ def main():
         "v2 pinned vs v1 pinned": ([runs["v2_pinned"]], [runs["v1_pinned"]]),
         "v2b vs v1b": ([runs["v2b"]], [runs["v1b"]]),
     }
+    comps["v3 vs v1 pinned"] = ([runs["v3"]], [runs["v1_pinned"]])
     if "v3_test" in runs and "v1_test" in runs:
         comps["held-out: v3 vs v1"] = ([runs["v3_test"]], [runs["v1_test"]])
+    if "v2_test" in runs:
+        comps["held-out: v2 vs v1"] = ([runs["v2_test"]], [runs["v1_test"]])
+        comps["held-out: v3 vs v2"] = ([runs["v3_test"]], [runs["v2_test"]])
     comparisons = {k: paired_bootstrap(task_runs(a), task_runs(b), rng) | {"perm_p": permutation(a, b, rng)}
                    for k, (a, b) in comps.items()}
 
     control = [r for b in dev("none")[1:] for r in b]  # v1, v1 pinned, v1b: our harness, no checks
-    hold_batches = [n for n in ("v2", "v2_pinned", "v2b", "v3", "v3_test") if n in runs]
-    held = {n: hold_funnel(runs[n], control if n != "v3_test" else runs.get("v1_test", [])) for n in hold_batches}
+    hold_batches = [n for n in ("v2", "v2_pinned", "v2b", "v3", "v2_test", "v3_test") if n in runs]
+    held = {n: hold_funnel(runs[n], runs.get("v1_test", []) if n.endswith("_test") else control) for n in hold_batches}
 
     fm = failure_modes({"none": dev("none")[1:], "unsourced": dev("unsourced"), "alternatives": dev("alternatives")})
+    # One batch per version, the latest of each: v1 pinned, v2 pinned, v3.
+    fm_latest = failure_modes({"none": [runs["v1_pinned"]], "unsourced": [runs["v2_pinned"]], "alternatives": [runs["v3"]]})
 
     order = [n for n in runs]
     per = defaultdict(dict)
@@ -397,7 +404,7 @@ def main():
     s = {"batches": batches,
          "noise": {"no_check_pass_at_1": no_check, "no_check_spread": max(no_check) - min(no_check),
                    "no_check_pairs": gaps, "largest_no_check_gap": largest, "comparisons": comparisons},
-         "after_hold": held, "failure_modes": fm, "per_task_order": order, "per_task": per}
+         "after_hold": held, "failure_modes": fm, "failure_modes_latest": fm_latest, "per_task_order": order, "per_task": per}
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "summary.json").write_text(json.dumps(s, indent=1, default=lambda o: sorted(o) if isinstance(o, set) else str(o)))
     (OUT / "summary.md").write_text(markdown(s))

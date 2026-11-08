@@ -17,14 +17,19 @@ mode:
 | v2 | **value with no source**: a literal in the query that no given or schema text contains | filled-in values |
 | v3 | **similar alternatives**: the query uses one of several look-alike tables or columns | narrow search, picking among options |
 
-**Results so far** (Qwen3-235B-A22B-2507; judge Llama-3.3-70B; 3 tries per task):
+**Results so far.** Qwen3-235B-A22B-2507 is the agent and Llama-3.3-70B the judge, with 3 tries per task. The checks were
+tuned on the 20 dev tasks; the 39 held-out tasks were run only once the versions were frozen.
 
-| | pass@1 dev (20 tasks) | pass@1 held-out (39 tasks) | schema details found, held-out | questions per run |
-|---|---|---|---|---|
-| no checks (v1) | 37.5% (4 batches) | 13.7% | 36% | 3.4–4.0 |
-| v2 | 38–47% (3 batches) | — | — | 4.0–4.3 |
-| v3 | 53.3% | 21.4% (+7.7, p = 0.049) | 69% | 7.0–7.2 |
-| full info (ceiling) | 80% | 59% (1 try) | — | — |
+| Version | pass@1, dev | pass@1, held-out | vs v1, held-out | schema details found, held-out | questions per run, held-out |
+|---|---|---|---|---|---|
+| v1: no checks | 35.0% | 13.7% | — | 39/108 | 3.4 |
+| v2: value with no source | 38.3% | 15.4% | +1.7 points (p = 0.42) | 54/108 | 4.2 |
+| v3: v2 + similar alternatives | 53.3% | 21.4% | +7.7 points (p = 0.05) | 75/108 | 7.0 |
+| full info (ceiling) | 80.0% | 59.0% (1 try) | | | |
+
+- Each row is that version's latest batch.
+- Batches without checks, rerun, score 35–38% on dev, so smaller dev differences are noise.
+- p comes from a within-task permutation test.
 
 All tables and statistics are in `analysis/midway/summary.md`, and the figures in `analysis/midway/figures/`.
 Both are regenerated from the run folders by the commands under "Reproduce the results".
@@ -128,8 +133,8 @@ for v in v1_native v2_unsourced v3_alternatives v1b_open_questions v2b_unsourced
 done
 # The "pinned" v1/v2 batches add: --routing configs/routing/parasail_fp8.yaml --out runs/<v>/dev_20x3_parasail
 
-# Held-out: v1 and v3 on the 39 small-DB test tasks x 3 (about $2 and $3.50), full info x 1 (about $1)
-for v in v1_native v3_alternatives; do
+# Held-out: v1, v2 and v3 on the 39 small-DB test tasks x 3 (about $2, $2 and $3.50), full info x 1 (about $1)
+for v in v1_native v2_unsourced v3_alternatives; do
   guard 12 runs/$v/test_small_39x3 $PY scripts/run_version.py configs/versions/$v.yaml \
     --out runs/$v/test_small_39x3 --tasks data/sql_tasks/instances_test_small.json
 done
